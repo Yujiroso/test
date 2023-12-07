@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'bank'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='口座情報';
 
---変更予定
 --Table  'nestree'.'emp_info' // 社内情報
 CREATE TABLE IF NOT EXISTS 'nestree'.'emp_info'(
 
@@ -32,7 +31,7 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'news_details'(
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='ニュース詳細';
 
 --Table  'nestree'.'daily_report' // 日報
-CREATE TABLE IF NOT EXISTS 'nestree'.'deily_report'(
+CREATE TABLE IF NOT EXISTS 'nestree'.'daily_report'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='日報';
 
@@ -40,6 +39,11 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'deily_report'(
 CREATE TABLE IF NOT EXISTS 'nestree'.'monthly_report'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='月報';
+
+--Table  'nestree'.'expense_report' // 経費申請
+CREATE TABLE IF NOT EXISTS 'nestree'.'expense_report'(
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='経費申請';
 
 --Table  'nestree'.'skillup' // スキルアップ
 CREATE TABLE IF NOT EXISTS 'nestree'.'skillup'(
