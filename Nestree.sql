@@ -94,10 +94,3 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'onetime'(
 CREATE TABLE IF NOT EXISTS 'nestree'.'admin'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='管理者ユーザー';
-
-
-
-
-
-
-
