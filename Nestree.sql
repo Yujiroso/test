@@ -1,12 +1,12 @@
 CREATE DATABASE IF NOT EXISTS 'nestree';
 
---Table  'nestree'.'employee' // ユーザー
-CREATE TABLE IF NOT EXISTS 'nestree'.'employee'(
+--Table  'nestree'.'emp' // ユーザー
+CREATE TABLE IF NOT EXISTS 'nestree'.'emp'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='ユーザー';
 
---Table  'nestree'.'employee_details' // ユーザー詳細
-CREATE TABLE IF NOT EXISTS 'nestree'.'employee_details'(
+--Table  'nestree'.'emp_details' // ユーザー詳細
+CREATE TABLE IF NOT EXISTS 'nestree'.'emp_details'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='ユーザー詳細';
 
@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'bank'(
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='口座情報';
 
 --変更予定
---Table  'nestree'.'employee_info' // 社内情報
-CREATE TABLE IF NOT EXISTS 'nestree'.'employee_info'(
+--Table  'nestree'.'emp_info' // 社内情報
+CREATE TABLE IF NOT EXISTS 'nestree'.'emp_info'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='社内情報';
 
@@ -66,13 +66,6 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'safety_check'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='安全確認';
 
---変更予定
---Table  'nestree'.'point' // ポイント
-CREATE TABLE IF NOT EXISTS 'nestree'.'point'(
-
-)ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='ポイント';
-
---変更予定
 --Table  'nestree'.'point_his' // ポイント履歴
 CREATE TABLE IF NOT EXISTS 'nestree'.'point_his'(
 
