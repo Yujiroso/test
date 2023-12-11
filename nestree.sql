@@ -88,6 +88,30 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'point_his'(
 ALTER TABLE `point_his`
     Partition BY RANGE (YEAR(date_added)*100 + MONTH(date_added))
     (
+    Partition p202001 VALUES LESS THAN (202002),
+    Partition p202002 VALUES LESS THAN (202003),
+    Partition p202003 VALUES LESS THAN (202004),
+    Partition p202004 VALUES LESS THAN (202005),
+    Partition p202005 VALUES LESS THAN (202006),
+    Partition p202006 VALUES LESS THAN (202007),
+    Partition p202007 VALUES LESS THAN (202008),
+    Partition p202008 VALUES LESS THAN (202009),
+    Partition p202009 VALUES LESS THAN (202010),
+    Partition p202010 VALUES LESS THAN (202011),
+    Partition p202011 VALUES LESS THAN (202012),
+    Partition p202012 VALUES LESS THAN (202101),
+    Partition p202101 VALUES LESS THAN (202102),
+    Partition p202102 VALUES LESS THAN (202103),
+    Partition p202103 VALUES LESS THAN (202104),
+    Partition p202104 VALUES LESS THAN (202105),
+    Partition p202105 VALUES LESS THAN (202106),
+    Partition p202106 VALUES LESS THAN (202107),
+    Partition p202107 VALUES LESS THAN (202108),
+    Partition p202108 VALUES LESS THAN (202109),
+    Partition p202109 VALUES LESS THAN (202110),
+    Partition p202110 VALUES LESS THAN (202111),
+    Partition p202111 VALUES LESS THAN (202112),
+    Partition p202112 VALUES LESS THAN (202201),
     Partition p202201 VALUES LESS THAN (202202),
     Partition p202202 VALUES LESS THAN (202203),
     Partition p202203 VALUES LESS THAN (202204),
@@ -117,8 +141,31 @@ ALTER TABLE `point_his`
 
 --Table  'nestree'.'magnification_his' // 倍率変更履歴
 CREATE TABLE IF NOT EXISTS 'nestree'.'magnification_his'(
-
+    id INT NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    type INT NOT NULL,
+    magnification FLOAT NOT NULL,
+    date_added DATETIME NOT NULL,
+    datetime_update DATETIME NOT NULL,
+    del_flg TINYINT NOT NULL,
+    PRIMARY KEY (id, date_added) USING BTREE,
+    INDEX idx_emp_id (emp_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='倍率変更履歴';
+
+--倍率変更履歴テーブルパーティション化 //年ごと
+ALTER TABLE `magnification_his`
+    Partition BY RANGE (YEAR(date_added)*100 + MONTH(date_added))
+    (
+    Partition p201701 VALUES LESS THAN (201801),
+    Partition p201801 VALUES LESS THAN (201901),
+    Partition p201901 VALUES LESS THAN (202001),
+    Partition p202001 VALUES LESS THAN (202101),
+    Partition p202101 VALUES LESS THAN (202201),
+    Partition p202201 VALUES LESS THAN (202301),
+    Partition p202301 VALUES LESS THAN (202401),
+    Partition p202401 VALUES LESS THAN (202501),
+    Partition p999999 VALUES LESS THAN (MAXVALUE) -- デフォルト値設定
+    );
 
 --Table  'nestree'.'session' // セッションID
 CREATE TABLE IF NOT EXISTS 'nestree'.'session'(
