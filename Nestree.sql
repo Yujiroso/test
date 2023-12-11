@@ -94,3 +94,18 @@ CREATE TABLE IF NOT EXISTS 'nestree'.'onetime'(
 CREATE TABLE IF NOT EXISTS 'nestree'.'admin'(
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='管理者ユーザー';
+
+--Table  'nestree'.'practices1' // Git練習
+CREATE TABLE IF NOT EXISTS 'nestree'.'practices1'(
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='Git練習1';
+
+--Table  'nestree'.'practices2' // Git練習
+CREATE TABLE IF NOT EXISTS 'nestree'.'practices2'(
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='Git練習2';
+
+--Table  'nestree'.'practices3' // Git練習
+CREATE TABLE IF NOT EXISTS 'nestree'.'practices3'(
+
+)ENGINE=InnoDB DEFAULT CHARSET=utf COLLATE=utf8_bin COMMENT='Git練習3';
