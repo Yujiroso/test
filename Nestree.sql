@@ -4,4 +4,3 @@ CREATE DATABASE IF NOT EXISTS 'nestree';
 CREATE TABLE IF NOT EXISTS 'nestree'.'employee'(
 
 )
-
