@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS nestree;
 
 -- Table  'nestree'.'emp' // ユーザー
 CREATE TABLE IF NOT EXISTS nestree.emp(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     status TINYINT(1) NOT NULL,
     datetime_created DATETIME NOT NULL,
     datetime_updated DATETIME NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp(
 
 -- Table  'nestree'.'emp_details' // ユーザー詳細
 CREATE TABLE IF NOT EXISTS nestree.emp_details(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     first_name_kanji VARCHAR(8) NOT NULL DEFAULT '',
     first_name_romaji VARCHAR(16) NOT NULL DEFAULT '',
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp_details(
 
 -- Table  'nestree'.'bank' // 口座情報
 CREATE TABLE IF NOT EXISTS nestree.bank(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     name VARCHAR(16) NOT NULL DEFAULT '',
     branch_code VARCHAR(3) NOT NULL DEFAULT '',
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS nestree.bank(
 
 -- Table  'nestree'.'emp_info' // 社内情報
 CREATE TABLE IF NOT EXISTS nestree.emp_info(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     type_emp TINYINT(1) NOT NULL,
     type_dep TINYINT(1) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp_info(
 
 -- Table  'nestree'.'news' // ニュース
 CREATE TABLE IF NOT EXISTS nestree.news(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     type TINYINT(1) NOT NULL,
     title VARCHAR(64) NOT NULL DEFAULT '',
@@ -84,10 +84,10 @@ CREATE TABLE IF NOT EXISTS nestree.news(
 
 -- Table  'nestree'.'news_details' // ニュース詳細
 CREATE TABLE IF NOT EXISTS nestree.news_details(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     news_id INT NOT NULL,
     content VARCHAR(255) NOT NULL DEFAULT '',
-    pic_data MEDIUMBLOB,
+    pic_data VARCHAR(255) NOT NULL DEFAULT '',
     datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id)
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS nestree.news_details(
 
 -- Table  'nestree'.'daily_report' // 日報
 CREATE TABLE IF NOT EXISTS nestree.daily_report(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
-    note VARCHAR(255) NOT NULL DEFAULT '',
+    content VARCHAR(255) NOT NULL DEFAULT '',
     work_hour INT NOT NULL,
     work_start DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
     work_end DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS nestree.daily_report(
 
 -- Table  'nestree'.'monthly_report' // 月報
 CREATE TABLE IF NOT EXISTS nestree.monthly_report(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     approved TINYINT(1) DEFAULT FALSE,
     month_period DATE,
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS nestree.monthly_report(
 
 -- Table  'nestree'.'expense_report' // 経費申請
 CREATE TABLE IF NOT EXISTS nestree.expense_report(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     approved TINYINT(1) DEFAULT FALSE,
     type TINYINT(1) NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS nestree.expense_report(
 
 -- Table  'nestree'.'skillup' // スキルアップ
 CREATE TABLE IF NOT EXISTS nestree.skillup(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(64) NOT NULL DEFAULT '',
     memo VARCHAR(64) NOT NULL DEFAULT '',
     data_file VARCHAR(255) NOT NULL DEFAULT '',
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS nestree.skillup(
 
 -- Table  'nestree'.'timesheet' // 勤怠
 CREATE TABLE IF NOT EXISTS nestree.timesheet(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     status TINYINT(1) DEFAULT FALSE,
     work_start DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS nestree.timesheet(
 
 -- Table  'nestree'.'share_info' // 資料共有
 CREATE TABLE IF NOT EXISTS nestree.share_info(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     title VARCHAR(64) NOT NULL DEFAULT '',
     memo VARCHAR(64) NOT NULL DEFAULT '',
     data_file VARCHAR(255) NOT NULL DEFAULT '',
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS nestree.share_info(
 
 -- Table  'nestree'.'salary' // 給与明細
 CREATE TABLE IF NOT EXISTS nestree.salary(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     approved TINYINT(1) NOT NULL DEFAULT FALSE,
     type TINYINT(1) NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS nestree.salary(
 
 -- Table  'nestree'.'safety_check' // 安全確認
 CREATE TABLE IF NOT EXISTS nestree.safety_check(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
     emergency_type TINYINT(1) NOT NULL DEFAULT FALSE,
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS nestree.safety_check(
 
 -- Table  'nestree'.'point' // ポイント
 CREATE TABLE IF NOT EXISTS nestree.point(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     type INT NOT NULL,
     increased INT NOT NULL,
@@ -275,7 +275,7 @@ ALTER TABLE nestree.point
 
 -- Table  'nestree'.'rate' // 倍率
 CREATE TABLE IF NOT EXISTS nestree.rate(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
     type INT NOT NULL,
     rate FLOAT NOT NULL,
@@ -303,7 +303,7 @@ ALTER TABLE nestree.rate
 
 -- Table  'nestree'.'session' // セッションID
 CREATE TABLE IF NOT EXISTS nestree.session(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     session_id VARCHAR(255) NOT NULL DEFAULT '',
     note VARCHAR(255) NOT NULL DEFAULT '',
     datetime_expired DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS nestree.session(
 
 -- Table  'nestree'.'onetime' // ワンタイムキー認証
 CREATE TABLE IF NOT EXISTS nestree.onetime(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     status TINYINT(1) NOT NULL,
     token VARCHAR(64) NOT NULL,
     mail VARCHAR(64) NOT NULL,
@@ -330,9 +330,9 @@ CREATE TABLE IF NOT EXISTS nestree.onetime(
 
 -- Table  'nestree'.'admin' // 管理者ユーザー
 CREATE TABLE IF NOT EXISTS nestree.admin(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     login_name VARCHAR(64) NOT NULL,
-    user_id INT NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
     status TINYINT(1) NOT NULL,
     password VARCHAR(64) NOT NULL DEFAULT '',
     show_name VARCHAR(64) NOT NULL DEFAULT '',
