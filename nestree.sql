@@ -1,4 +1,3 @@
-BEGIN;
 CREATE DATABASE IF NOT EXISTS nestree;
 
 -- Table  'nestree'.'emp' // ユーザー
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp(
     datetime_updated DATETIME NOT NULL,
     del_flg TINYINT(1) NOT NULL,
     PRIMARY KEY (id),
-    INDEX idx_id (id)
+    INDEX emp_idx1 (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー';
 
 -- Table  'nestree'.'emp_details' // ユーザー詳細
@@ -34,7 +33,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp_details(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    KEY idx_emp_id (emp_id)
+    KEY emp_details_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー詳細';
 
 -- Table  'nestree'.'bank' // 口座情報
@@ -52,7 +51,7 @@ CREATE TABLE IF NOT EXISTS nestree.bank(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX idx_emp_id (emp_id)
+    INDEX bank_idx1 (emp_id)
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='口座情報';
 
 -- Table  'nestree'.'emp_info' // 社内情報
@@ -66,7 +65,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp_info(
     datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX idx_emp_id (emp_id)
+    INDEX emp_info_idx1 (emp_id)
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='社内情報';
 
 -- Table  'nestree'.'news' // ニュース
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS nestree.news(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX idx_emp_id (emp_id)
+    INDEX news_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ニュース';
 
 -- Table  'nestree'.'news_all' // ニュース一覧
@@ -110,7 +109,7 @@ CREATE TABLE IF NOT EXISTS nestree.daily_report(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id, datetime_added) USING BTREE,
-    INDEX idx_emp_id (emp_id)
+    INDEX daily_report_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='日報';
 
 -- 日報テーブルパーティション化 //月ごと
@@ -188,7 +187,7 @@ CREATE TABLE IF NOT EXISTS nestree.monthly_report(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id, date_added),
-    INDEX idx_emp_id(emp_id)
+    INDEX monthly_report_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='月報';
 
 -- 月報テーブルパーティション化 //年ごと
@@ -220,7 +219,7 @@ CREATE TABLE IF NOT EXISTS nestree.expense_report(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id, monthly),
-    INDEX idx_emp_id(emp_id)
+    INDEX expense_report_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='経費申請';
 
 -- 経費申請テーブルパーティション化 //年ごと
@@ -275,7 +274,7 @@ CREATE TABLE IF NOT EXISTS nestree.salary(
     datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     PRIMARY KEY (id, monthly),
-    INDEX idx_emp_id(emp_id)
+    INDEX salary_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='給与明細';
 
 -- 給与明細テーブルパーティション化 //年ごと
@@ -301,7 +300,7 @@ CREATE TABLE IF NOT EXISTS nestree.safety_check(
     emergency_type TINYINT(1) NOT NULL DEFAULT FALSE,
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     PRIMARY KEY (id),
-    INDEX idx_emp_id(emp_id)
+    INDEX safety_check_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='安全確認';
 
 -- Table  'nestree'.'point' // ポイント
@@ -315,7 +314,7 @@ CREATE TABLE IF NOT EXISTS nestree.point(
     datetime_update DATETIME NOT NULL,
     del_flg TINYINT NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id, date_added) USING BTREE,
-    INDEX idx_emp_id (emp_id) USING BTREE
+    INDEX point_idx1 (emp_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ポイント';
 
 -- ポイント履歴テーブルパーティション化 //月ごと
@@ -383,7 +382,7 @@ CREATE TABLE IF NOT EXISTS nestree.rate(
     datetime_update DATETIME NOT NULL,
     del_flg TINYINT NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id, date_added) USING BTREE,
-    INDEX idx_emp_id (emp_id) USING BTREE
+    INDEX rate_idx1 (emp_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='倍率';
 
 -- 倍率テーブルパーティション化 //年ごと
@@ -475,7 +474,7 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_external(
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
     INDEX evaluation_external_idx1 (emp_id) USING BTREE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='360評価';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='社外評価';
 
 -- Table  'nestree'.'evaluation_internal' // 社内評価
 CREATE TABLE IF NOT EXISTS nestree.evaluation_internal(
