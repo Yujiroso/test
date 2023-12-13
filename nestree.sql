@@ -444,3 +444,75 @@ CREATE TABLE IF NOT EXISTS nestree.admin(
     del_flg TINYINT NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='管理者ユーザー';
+
+-- Table  'nestree'.'evaluation' // 360評価
+CREATE TABLE IF NOT EXISTS nestree.evaluation(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    external_id INT NOT NULL,
+    internal_id INT NOT NULL,
+    mencare_id INT NOT NULL,
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_idx1 (emp_id) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='360評価';
+
+-- Table  'nestree'.'evaluation_external' // 社外評価
+CREATE TABLE IF NOT EXISTS nestree.evaluation_external(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    project_id INT NOT NULL DEFAULT '',
+    text TEXT NOT NULL,
+    data_file VARCHAR(255) DEFAULT '',
+    score INT NOT NULL,
+    memo VARCHAR(64) NOT NULL DEFAULT '',
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_external_idx1 (emp_id) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='360評価';
+
+-- Table  'nestree'.'evaluation_internal' // 社内評価
+CREATE TABLE IF NOT EXISTS nestree.evaluation_internal(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    manager_id INT NOT NULL,
+    text TEXT NOT NULL,
+    data_file VARCHAR(255) DEFAULT '',
+    score INT NOT NULL,
+    memo VARCHAR(64) NOT NULL DEFAULT '',
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_internal_idx1 (emp_id) USING BTREE
+    INDEX evaluation_internal_idx2 (manager_id) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='社内評価';
+
+-- Table  'nestree'.'evaluation_mencare' // メンケア
+CREATE TABLE IF NOT EXISTS nestree.evaluation_mencare(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    mentor_id INT NOT NULL,
+    motivation INT NOT NULL,
+    motivation_comment VARCHAR(255) DEFAULT '',
+    responsibility INT NOT NULL,
+    responsibility_comment VARCHAR(255) DEFAULT '',
+    communication INT NOT NULL,
+    communication_comment VARCHAR(255) DEFAULT '',
+    score INT NOT NULL,
+    memo VARCHAR(64) NOT NULL DEFAULT '',
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_mencare_idx1 (emp_id) USING BTREE
+    INDEX evaluation_mencare_idx2 (mentor_id) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='メンケア';
