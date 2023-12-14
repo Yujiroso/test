@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation(
 CREATE TABLE IF NOT EXISTS nestree.evaluation_external(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
-    project_id INT NOT NULL DEFAULT '',
+    project_id INT NOT NULL,
     text TEXT NOT NULL,
     data_file VARCHAR(255) DEFAULT '',
     score INT NOT NULL,
@@ -490,7 +490,7 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_internal(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX evaluation_internal_idx1 (emp_id) USING BTREE
+    INDEX evaluation_internal_idx1 (emp_id) USING BTREE,
     INDEX evaluation_internal_idx2 (manager_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='社内評価';
 
@@ -512,6 +512,6 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_mencare(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX evaluation_mencare_idx1 (emp_id) USING BTREE
+    INDEX evaluation_mencare_idx1 (emp_id) USING BTREE,
     INDEX evaluation_mencare_idx2 (mentor_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='メンケア';
