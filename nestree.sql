@@ -463,7 +463,7 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation(
 CREATE TABLE IF NOT EXISTS nestree.evaluation_external(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     emp_id INT NOT NULL,
-    project_id INT NOT NULL DEFAULT '',
+    project_id INT NOT NULL,
     text TEXT NOT NULL,
     data_file VARCHAR(255) DEFAULT '',
     score INT NOT NULL,
