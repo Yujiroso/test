@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS nestree.emp_details(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    KEY emp_details_idx1 (emp_id)
+    INDEX emp_details_idx1 (emp_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='ユーザー詳細';
 
 -- Table  'nestree'.'bank' // 口座情報
