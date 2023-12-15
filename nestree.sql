@@ -493,6 +493,28 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_internal(
     INDEX evaluation_internal_idx2 (manager_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='社内評価';
 
+-- Table  'nestree'.'evaluation_mencare' // メンケア
+CREATE TABLE IF NOT EXISTS nestree.evaluation_mencare(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    emp_id INT NOT NULL,
+    mentor_id INT NOT NULL,
+    motivation INT NOT NULL,
+    motivation_comment VARCHAR(255) DEFAULT '',
+    responsibility INT NOT NULL,
+    responsibility_comment VARCHAR(255) DEFAULT '',
+    communication INT NOT NULL,
+    communication_comment VARCHAR(255) DEFAULT '',
+    score INT NOT NULL,
+    memo VARCHAR(64) NOT NULL DEFAULT '',
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_mencare_idx1 (emp_id) USING BTREE,
+    INDEX evaluation_mencare_idx2 (mentor_id) USING BTREE
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='メンケア';
+
 -- Table  'nestree'.'evaluation_project' // プロジェクト
 CREATE TABLE IF NOT EXISTS nestree.evaluation_project(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
