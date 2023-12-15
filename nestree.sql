@@ -507,7 +507,7 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_project(
     uuid VARCHAR(64) NOT NULL DEFAULT '',
     del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
     PRIMARY KEY (id),
-    INDEX evaluation_project_idx1 (manager_id) USING BTREE
+    INDEX evaluation_project_idx1 (manager_id) USING BTREE,
     INDEX evaluation_project_idx2 (emp_id) USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='プロジェクト';
 
