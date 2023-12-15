@@ -1,5 +1,4 @@
 CREATE DATABASE IF NOT EXISTS nestree;
-
 -- Table  'nestree'.'emp' // ユーザー
 CREATE TABLE IF NOT EXISTS nestree.emp(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
