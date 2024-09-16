@@ -1,5 +1,4 @@
 CREATE DATABASE IF NOT EXISTS nestree;
-
 -- Table  'nestree'.'emp' // ユーザー
 CREATE TABLE IF NOT EXISTS nestree.emp(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -514,4 +513,23 @@ CREATE TABLE IF NOT EXISTS nestree.evaluation_mencare(
     PRIMARY KEY (id),
     INDEX evaluation_mencare_idx1 (emp_id) USING BTREE,
     INDEX evaluation_mencare_idx2 (mentor_id) USING BTREE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='メンケア';
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='メンケア';
+
+-- Table  'nestree'.'evaluation_project' // プロジェクト
+CREATE TABLE IF NOT EXISTS nestree.evaluation_project(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    manager_id INT NOT NULL,
+    emp_id INT NOT NULL,
+    type_dep INT NOT NULL,
+    project_datails VARCHAR(255) DEFAULT '',
+    memo VARCHAR(64) NOT NULL DEFAULT '',
+    datetime_created DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    datetime_updated DATETIME NOT NULL DEFAULT '1970-01-01 00:00:01',
+    uuid VARCHAR(64) NOT NULL DEFAULT '',
+    del_flg TINYINT(1) NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (id),
+    INDEX evaluation_project_idx1 (manager_id) USING BTREE,
+    INDEX evaluation_project_idx2 (emp_id) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='プロジェクト';
+
+
